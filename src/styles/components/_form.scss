@@ -1,0 +1,13 @@
+@use '../abstracts/' as *;
+
+.form-container {
+    max-width: 700px;
+    margin-inline: auto;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 8px 32px 0 rgba(124, 124, 124, 0.37);
+    //
+    .form-floating {
+        margin-bottom: 20px;
+    }
+}

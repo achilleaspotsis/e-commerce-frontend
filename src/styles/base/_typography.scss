@@ -1,0 +1,11 @@
+// body {
+//     font-family: 'effra', sans-serif;
+// }
+
+div {
+    p {
+        &:last-of-type {
+            margin-bottom: 0;
+        }
+    }
+}

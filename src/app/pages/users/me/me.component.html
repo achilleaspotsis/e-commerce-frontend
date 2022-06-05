@@ -1,0 +1,15 @@
+<div class="text-center">
+    <!-- {{user | json}}
+    <h1>Hello {{user.name}}</h1> -->
+</div>
+<div class="me">
+    <ul class="user-info my-4">
+        <li *ngFor="let item of user | keyvalue">
+            <span class="fw-bold">{{item.key}}:</span> {{item.value}}
+        </li>
+    </ul>
+    <ng-container *ngIf="user.role === 'admin'">
+        <a routerLink="/users" class="btn btn-primary">See all users</a>
+    </ng-container>
+    <a routerLink="/update" class="btn btn-warning">Update Details</a>
+</div>

@@ -1,0 +1,44 @@
+@use '../abstracts/' as *;
+
+//call to action button
+.ctab {
+    position: relative;
+    display: inline-block;
+    min-width: 245px;
+    line-height: 67px;
+    text-align: center;
+    transition: $duration;
+    border: $border1 transparent;
+    background: $secondaryColor;
+    color: $white;
+    font-weight: 700;
+    letter-spacing: 0.9px;
+    &:hover, &:focus {
+        border-color: $secondaryColor;
+        background: $white;
+        color: $secondaryColor;
+    }
+}
+
+.close-button {
+    @include wh(23px, 23px);
+    div {
+        width: 23px;
+        height: 2px;
+        background: #3C3C3C;
+        transition: $duration;
+        &:nth-child(1) {
+            transform: translateY(-1px) rotate(45deg);
+        }
+        &:nth-child(2) {
+            transform: translateY(-3px) rotate(-45deg);
+        }
+    }
+    @include breakpoint('>lg') {
+        &:hover {
+            div {
+                background: $mainColor;
+            }
+        }
+    }
+}

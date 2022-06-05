@@ -1,0 +1,70 @@
+@use '../abstracts/' as *;
+
+.sp-options-btn,
+.accordion-btn {
+    position: relative;
+    width: 100%;
+    background: #F4F4F4;
+    color: #9D9D9D;
+    font-size: 18px;
+    line-height: 50px;
+    padding-inline: 10px;
+    text-align: center;
+    transition: $duration;
+    &::after {
+        content: '';
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%) translateY(-10px);
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 12px 12px 0 12px;
+        border-color: $sixthColor transparent transparent transparent;
+        visibility: hidden;
+        opacity: 0;
+        transition: 0.3s 0.1s ease-in-out;
+        z-index: -1;
+    }
+    &.active,
+    &.clicked {
+        background: $sixthColor;
+        color: #F4F4F4;
+        &::after {
+            visibility: visible;
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+    }
+    // @include breakpoint('>lg') {
+    //     &:hover {
+    //         &:not(.active) {
+    //             transform: scale(0.99);
+    //         }
+    //     }
+    // }
+}
+
+.accordion-btn {
+    &::before {
+        content: '+';
+        position: absolute;
+        top: 50%;
+        right: 20px;
+        font-size: 22px;
+        color: #9D9D9D;
+        transform: translateY(-50%);
+        transition: $duration;
+        z-index: 1;
+    }
+    &.clicked {
+        &::before {
+            content: '-';
+            color: #F4F4F4;
+        }
+    }
+    + * {
+        display: none;
+    }
+}

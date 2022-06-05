@@ -1,0 +1,25 @@
+<div class="auth-section register py-5">
+    {{errors}}
+    <div class="form-container">
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+            <div class="form-floating">
+                <input type="text" id="name" class="form-control" formControlName="name" placeholder="Name">
+                <label for="name">Name</label>
+                <!-- <small class="text-danger">This field is required</small> -->
+            </div>
+            <div class="form-floating">
+                <input type="email" id="email" class="form-control" formControlName="email" placeholder="Email">
+                <label for="email">Email</label>
+            </div>
+            <div class="form-floating">
+                <input type="password" id="password" class="form-control" formControlName="password" placeholder="Password">
+                <label for="password">Password</label>
+            </div>
+            <button type="submit" [disabled]="!form.valid" class="btn btn-primary">Submit</button>
+        </form>
+        <p class="text-center mt-3">
+            Already have an account?
+            <a routerLink="/login" title="Login">Login</a>
+        </p>
+    </div>
+</div>

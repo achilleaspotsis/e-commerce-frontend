@@ -1,0 +1,36 @@
+@use '../abstracts' as *;
+
+:root {
+    accent-color: $mainColor;
+}
+
+html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+    // &.noscroll {
+    //     overflow-y: hidden;
+    // }
+}
+
+body {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    color: $fourthColor;
+}
+
+button, input, .form-control {
+    color: $black;
+}
+
+#main {
+    // @include breakpoint('<lg') {
+    //     padding-top: 78px;
+    // }
+    // @include breakpoint('>lg') {
+    // }
+    padding-top: 74px;
+}

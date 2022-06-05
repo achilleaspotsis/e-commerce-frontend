@@ -1,0 +1,11 @@
+<div class="text-center">
+    <p>List of Users:</p>
+    <ng-container *ngIf="users"; else noUsers>
+        <ul *ngFor="let user of users">
+            <li>{{ user.name }}</li>
+        </ul>
+    </ng-container>
+    <ng-template #noUsers>
+        <p>There are no users yet..</p>
+    </ng-template>
+</div>

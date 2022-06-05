@@ -1,0 +1,38 @@
+@use '../abstracts/' as *;
+
+.contains-dropdown {
+    position: relative;
+}
+.custom-dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    padding: 0;
+    background: $white;
+    border: $border1 #D9D9D9;
+    border-radius: 2px;
+    text-align: center;
+    z-index: 10;
+    max-height: 600px;
+    overflow-y: auto;
+    ul {
+        list-style-type: none;
+        li {
+            + li {
+                border-top: $border1 #D9D9D9;
+            }
+            button, a {
+                display: block;
+                width: 100%;
+                padding: 6px 15px;
+                transition: $duration;
+                // text-align: start;
+                &:hover {
+                    background: #F4F4F4;
+                }
+            }
+        }
+    }
+}

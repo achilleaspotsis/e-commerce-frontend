@@ -1,0 +1,11 @@
+//using @use we have to declare the variables that we want to override using with.
+@use '../../../node_modules/bootstrap/scss/bootstrap.scss' with (
+    $grid-breakpoints: (
+        xs: 0,
+        sm: 576px,
+        md: 768px,
+        lg: 1280px,
+        xl: 1440px,
+        xxl: 1560px
+    )
+);

@@ -1,0 +1,190 @@
+@mixin breakpoint($class) {
+    @if $class == '<xs' {
+        @media (max-width:400px) { @content; }
+    }
+    @else if $class == '<sm' {
+        @media (max-width:575px) { @content; }
+    }
+    @else if $class == '>sm' {
+        @media (min-width:576px) { @content; }
+    }
+    @else if $class == '=mobile-tablet' {
+        @media (min-width:576px) and (max-width:1279px) { @content; }
+    }
+    @else if $class == '<md' {
+        @media (max-width:767px) { @content; }
+    }
+    @else if $class == '>md' {
+        @media (min-width:768px) { @content; }
+    }
+    @else if $class == '=md' {
+        @media (min-width:768px) and (max-width:1279px) { @content; }
+    }
+    @else if $class == '<lg' {
+        @media (max-width:1279px) { @content; }
+    }
+    @else if $class == '>lg' {
+        @media (min-width:1280px) { @content; }
+    }
+    @else if $class == '=lg' {
+        @media (min-width:1280px) and (max-width:1439px) { @content; }
+    }
+    @else if $class == '<xl' {
+        @media (max-width:1439px) { @content; }
+    }
+    @else if $class == '>xl' {
+        @media (min-width:1440px) { @content; }
+    }
+    @else if $class == '<xxl' {
+        @media (max-width:1559px) { @content; }
+    }
+    @else if $class == '>xxl' {
+        @media (min-width:1560px) { @content; }
+    }
+    @else if $class == '>1920' {
+        @media (min-width:1920px) { @content; }
+    }
+}
+
+@mixin flexCenter($direction: row) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: $direction;
+}
+
+@mixin absoluteCenter {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+@mixin text1($size,$weight) {
+    font-size: $size;
+    font-weight: $weight;
+}
+
+@mixin text2($size,$weight,$line_height) {
+    font-size: $size;
+    font-weight: $weight;
+    line-height: $line_height;
+}
+
+@mixin wh($width,$height) {
+    width: $width;
+    height: $height;
+}
+
+@mixin backgroundOverlay($overlay) {
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: $overlay;
+    }
+}
+
+@mixin backgroundProperties($size: cover) {
+    background-size: $size;
+    background-repeat: no-repeat;
+}
+
+@mixin maskImageProperties($background-color: null, $size: cover) {
+    mask-size: $size;
+    mask-repeat: no-repeat;
+    background: $background-color;
+}
+
+@mixin iconScale($scale) {
+    @include breakpoint('>lg') {
+        transition: 0.25s ease-in-out;
+        &:hover {
+            transform: $scale;
+        }
+    }
+}
+
+@mixin linkBorderScale($border-width, $color) {
+    @include breakpoint('>lg') {
+        position: relative;
+        &::before{
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            // transform: scale(0);
+            border-bottom: $border-width solid $color;
+            transition: 0.25s ease-in-out;
+        }
+        &:hover{
+            &::before{
+                // transform: scale(1);
+                width: 100%;
+            }
+        }
+    }
+}
+
+@mixin imageScale {
+    @include breakpoint('>lg') {
+        overflow: hidden;
+        img {
+            transition: 0.25s ease-in-out;
+            &:hover {
+                transform: scale(1.2);
+            }
+        }
+    }
+}
+
+@mixin pseudoOutside($left, $right, $background) {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: $left;
+    right: $right;
+    width: 1000px;
+    height: 100%;
+    background: $background;
+    z-index: -1;
+}
+
+@mixin menuAnim($animationName, $duration, $delay) {
+    opacity: 0;
+    animation: $animationName $duration $delay ease-in-out forwards;
+    @keyframes #{$animationName} {
+        0% { transform: translateY(60px); opacity: 0; }
+        50% { transform: translateX(0); opacity: 0.3; }
+        100% { transform: translateX(0); opacity: 1; }
+    }
+}
+
+@mixin customScrollbar($width) {
+    //for firefox
+    scrollbar-width: thin;
+    // scrollbar-color: #c4c4c4 #e7e7e7;
+    scrollbar-color: #C1B3D7 #e7e7e7;
+    //for the other browsers
+    &::-webkit-scrollbar {
+        // display: none;
+        width: $width;
+    }
+    &::-webkit-scrollbar-track{
+        background: #e7e7e7;
+        border-radius: 10px;
+        border-left: 2px solid transparent;
+        border-right: 2px solid transparent;
+    }
+    &::-webkit-scrollbar-thumb{
+        // background: #c4c4c4;
+        background: #C1B3D7;
+        border-radius: 10px;
+        border-left: 1px solid transparent;
+        border-right: 1px solid transparent;
+    }
+}

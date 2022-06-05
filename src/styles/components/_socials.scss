@@ -1,0 +1,14 @@
+@use '../abstracts' as *;
+
+.socials {
+    list-style: none;
+    li {
+        display: inline-block;
+        + li {
+            margin-left: 40px;
+        }
+        img, svg {
+            @include iconScale(scale(1.2));
+        }
+    }
+}
