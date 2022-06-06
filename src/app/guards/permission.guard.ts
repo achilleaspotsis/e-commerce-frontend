@@ -1,16 +1,18 @@
+import { Location } from '@angular/common';
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
-import { AuthenticateService } from '../services/general/authenticate.service';
+import { PermissionService } from '../services/general/permission.service';
 
 @Injectable({
     providedIn: 'root'
 })
-export class IsLoggedInGuard implements CanActivate {
+export class PermissionGuard implements CanActivate {
 
     constructor(
-        private authenticateService: AuthenticateService,
+        private permissionService: PermissionService,
         private router: Router
+        // private location: Location
     ) {
 
     }
@@ -19,11 +21,13 @@ export class IsLoggedInGuard implements CanActivate {
         route: ActivatedRouteSnapshot,
         state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
 
-        if (this.authenticateService.isAuthenticated()) {
-            this.router.navigate(['/users/me']);
+        if (!this.permissionService.isAdmin()) {
+            // this.location.back();
+            this.router.navigate(['/me']);
             return false;
         }
 
         return true;
     }
+
 }

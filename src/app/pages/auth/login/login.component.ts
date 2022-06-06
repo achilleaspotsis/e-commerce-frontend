@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit {
                         alert('You have successfully logged in');
                         this.ls.store('token', response.body?.token);
                         this.ls.store('user', response.body?.user);
-                        this.router.navigate(['/me']);
+                        this.router.navigate(['/users/me']);
                     } else {
                         alert('Something went wrong..');
                     }

@@ -1,10 +1,10 @@
 <header>
-    <nav class="fixed-top py-3 bg-white text-dark">
-        <div class="container">
-            <div class="nav-wrapper d-flex justify-content-between">
-                <div class="logo-container">
-                    <a routerLink="/" class="fs-3">E-Commerce</a>
-                </div>
+    <nav class="py-3 px-5 bg-white text-dark">
+        <div class="nav-wrapper d-flex justify-content-between">
+            <div class="logo-container">
+                <a routerLink="/" class="fs-3">E-Commerce</a>
+            </div>
+            <div class="nav-menu-icons d-flex align-items-center">
                 <ul class="navigation-menu">
                     <li>
                         <a routerLink="">Products</a>
@@ -15,7 +15,7 @@
                 </ul>
                 <div class="icons">
                     <ng-container *ngIf="this.authenticateService.isAuthenticated()">
-                        <button type="button" class="btn btn-sm btn-danger" (click)="logoutUser()">Logout</button>
+                        <button type="button" class="btn btn-sm btn-danger ms-4" (click)="logoutUser()">Logout</button>
                     </ng-container>
                 </div>
             </div>
