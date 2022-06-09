@@ -1,0 +1,16 @@
+<div class="auth-section py-5">
+    <div class="form-container">
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+            <div class="form-floating">
+                <input type="text" id="name" class="form-control" formControlName="name" placeholder="Name">
+                <label for="name">Name</label>
+                <!-- <small class="text-danger">This field is required</small> -->
+            </div>
+            <div class="form-floating">
+                <input type="email" id="email" class="form-control" formControlName="email" placeholder="Email">
+                <label for="email">Email</label>
+            </div>
+            <button type="submit" [disabled]="!form.valid" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</div>

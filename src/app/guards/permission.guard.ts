@@ -23,7 +23,7 @@ export class PermissionGuard implements CanActivate {
 
         if (!this.permissionService.isAdmin()) {
             // this.location.back();
-            this.router.navigate(['/me']);
+            this.router.navigate(['/users/me']);
             return false;
         }
 

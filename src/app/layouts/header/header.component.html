@@ -4,21 +4,21 @@
             <div class="logo-container">
                 <a routerLink="/" class="fs-3">E-Commerce</a>
             </div>
-            <div class="nav-menu-icons d-flex align-items-center">
-                <ul class="navigation-menu">
-                    <li>
-                        <a routerLink="">Products</a>
-                    </li>
-                    <li>
-                        <a routerLink="">Reviews</a>
-                    </li>
-                </ul>
-                <div class="icons">
-                    <ng-container *ngIf="this.authenticateService.isAuthenticated()">
+            <ng-container *ngIf="this.authenticateService.isAuthenticated()">
+                <div class="nav-menu-icons d-flex align-items-center">
+                    <ul class="navigation-menu">
+                        <li>
+                            <a routerLink="">Products</a>
+                        </li>
+                        <li>
+                            <a routerLink="">Reviews</a>
+                        </li>
+                    </ul>
+                    <div class="icons">
                         <button type="button" class="btn btn-sm btn-danger ms-4" (click)="logoutUser()">Logout</button>
-                    </ng-container>
+                    </div>
                 </div>
-            </div>
+            </ng-container>
         </div>
     </nav>
 </header>
