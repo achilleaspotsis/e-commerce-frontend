@@ -2,21 +2,21 @@ import { Injectable } from '@angular/core';
 import { LocalStorageService } from 'ngx-webstorage';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class PermissionService {
 
-  constructor(
-      private ls: LocalStorageService
-  ) { }
+    constructor(
+        private ls: LocalStorageService
+    ) { }
 
-  public isAdmin(): boolean {
-      const user = this.ls.retrieve('user');
+    public isAdmin(): boolean {
+        const user = this.ls.retrieve('user');
 
-      if (user && user.role === 'admin') {
-          return true;
-      }
+        if (user && user.role === 'admin') {
+            return true;
+        }
 
-      return false;
-  }
+        return false;
+    }
 }
