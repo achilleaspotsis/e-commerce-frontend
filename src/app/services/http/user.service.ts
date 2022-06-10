@@ -21,4 +21,8 @@ export class UserService {
         return this.http.patch(`${environment.apiUrl}/users/update-user`, data, {observe: 'response'});
     }
 
+    public getSingleUser(id: string): Observable<any> {
+        return this.http.get(`${environment.apiUrl}/users/${id}`, {observe: 'response'});
+    }
+
 }
