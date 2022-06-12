@@ -25,10 +25,9 @@ export class AuthService {
         return this.http.post(`${environment.apiUrl}/auth/login`, data, {observe: 'response', withCredentials: true});
     }
 
-    public async logout() {
+    public logout() {
         this.http.get(`${environment.apiUrl}/auth/logout`, {observe: 'response'}).subscribe(response => {
             if (response.status === 200) {
-                alert('User logged out successfully');
                 this.ls.clear('token');
                 this.ls.clear('user');
                 this.router.navigate(['/login']);

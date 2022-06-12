@@ -11,41 +11,41 @@ import { AuthService } from 'src/app/services/http/auth.service';
 })
 export class LoginComponent implements OnInit {
 
-    form: FormGroup;
-
-    errors: string = '';
+    public form!: FormGroup;
 
     constructor(
         private fb: FormBuilder,
         private authService: AuthService,
         private router: Router,
         private ls: LocalStorageService
-    ) {
-        // Had to initialize the form inside the constructor to remove an error
+    ) {}
+
+    ngOnInit(): void {
+        this.initForm();
+    }
+
+    public initForm() {
         this.form = this.fb.group({
             email: ['', [Validators.required, Validators.email]],
             password: ['', [Validators.required, Validators.minLength(6)]]
         });
     }
 
-    ngOnInit(): void {
-        // console.log(this.form);
-        // this.form.valueChanges.subscribe()
-    }
-
-    onSubmit () {
+    public onSubmit () {
         this.authService.login(this.form.value)
-            .subscribe(response => {
+            .subscribe({
+                next: (response) => {
                     if (response.status === 200) {
                         alert('You have successfully logged in');
                         this.ls.store('token', response.body?.token);
                         this.ls.store('user', response.body?.user);
                         this.router.navigate(['/users/me']);
-                    } else {
-                        alert('Something went wrong..');
                     }
+                },
+                error: (response) => {
+                    alert(response.error?.message)
                 }
-            );
+            });
     }
 
 }

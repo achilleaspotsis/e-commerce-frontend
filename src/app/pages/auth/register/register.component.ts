@@ -11,16 +11,21 @@ import { AuthService } from 'src/app/services/http/auth.service';
 })
 export class RegisterComponent implements OnInit {
 
-    form: FormGroup;
+    public form!: FormGroup;
 
-    errors: string = '';
+    public errors: string = '';
 
     constructor(
         private fb: FormBuilder,
         private authService: AuthService,
         private router: Router
-    ) {
-        // Had to initialize the form inside the constructor to remove an error
+    ) {}
+
+    ngOnInit(): void {
+        this.initForm();
+    }
+
+    public initForm() {
         this.form = this.fb.group({
             name: ['', [Validators.required, Validators.minLength(3)]],
             email: ['', [Validators.required, Validators.email]],
@@ -28,23 +33,19 @@ export class RegisterComponent implements OnInit {
         });
     }
 
-    ngOnInit(): void {
-        console.log(this.form);
-        this.form.valueChanges.subscribe()
-    }
-
-    async onSubmit () {
+    public onSubmit () {
         this.authService.register(this.form.value)
-            .subscribe(
-                (response) => {
+            .subscribe({
+                next: (response) => {
                     if (response.status === 201) {
                         alert('You have successfully registered');
                         this.router.navigate(['/login']);
-                    } else {
-                        alert('Something went wrong..');
                     }
+                },
+                error: (response) => {
+                    alert(response.error?.message)
                 }
-            );
+            });
     }
 
 }

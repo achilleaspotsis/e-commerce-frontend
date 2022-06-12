@@ -15,39 +15,30 @@ export class UpdateComponent implements OnInit {
 
     public form!: FormGroup;
 
-    public errors: string = '';
-
     constructor(
         private fb: FormBuilder,
         private userService: UserService,
         private ls: LocalStorageService,
         private router: Router
-    ) {
-        // Had to initialize the form inside the constructor to remove an error
-        // this.form = this.fb.group({
-        //     name: [{value: this.user.name}, [Validators.required, Validators.minLength(3)]],
-        //     email: [{value: this.user.email}, [Validators.required, Validators.email]]
-        // });
-    }
+    ) {}
 
     ngOnInit() {
         this.user = this.ls.retrieve('user');
-        this.formInit();
+        this.initForm();
     }
 
-    private formInit() {
+    public initForm() {
         this.form = this.fb.group({
             name: [this.user.name, [Validators.required, Validators.minLength(3)]],
             email: [this.user.email, [Validators.required, Validators.email]]
-        });
+        }); 
     }
 
-    async onSubmit () {
+    public onSubmit () {
         this.userService.updateUser(this.form.value)
             .subscribe({
                 next: (response) => {
                     if (response.status === 200) {
-                        
                         this.ls.store('token', response.body?.token);
                         this.ls.store('user', response.body?.user);
                     }

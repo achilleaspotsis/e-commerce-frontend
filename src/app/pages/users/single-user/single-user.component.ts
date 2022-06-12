@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { User } from 'src/app/interfaces/user';
+import { NavigationService } from 'src/app/services/general/navigation.service';
 import { UserService } from 'src/app/services/http/user.service';
 
 @Component({
@@ -17,13 +18,13 @@ export class SingleUserComponent implements OnInit {
     constructor(
         private userService: UserService,
         private route: ActivatedRoute,
+        private navigationService: NavigationService
     ) { }
 
     ngOnInit(): void {
-        console.log(this.userId);
         this.route.params.subscribe(params => {
             this.userId = params['userId'];
-            console.log(this.userId);
+
             this.userService.getSingleUser(this.userId).subscribe({
                 next: (response) => {
                     if (response.status === 200) {      
@@ -31,6 +32,7 @@ export class SingleUserComponent implements OnInit {
                     }
                 },
                 error: (response) => {
+                    this.navigationService.back();
                     alert(response.error?.message);
                 }
             });
