@@ -1,8 +1,26 @@
-<div class="text-center">
-    <p>List of Users:</p>
+<div class="users-container">
+    <h1 class="mb-5 text-center">List of Users:</h1>
     <ng-container *ngIf="users"; else noUsers>
-        <ul *ngFor="let user of users">
-            <li>{{ user.name }}</li>
+        <ul class="user-card-grid row g-4">
+            <li class="col-6 col-lg-4" *ngFor="let user of users">
+                <div class="user-card d-flex flex-column flex-sm-row">
+                    <div class="user-card__image me-sm-4 mb-3 mb-sm-0">
+                        <img
+                            [src]="user.photo"
+                            [src-fallback]="'https://eu.ui-avatars.com/api/?background=random&color=fff&name=' + user.name"
+                            alt="{{ user.name }}"
+                        />
+                    </div>
+                    <div class="user-card__info">
+                        <h3>{{ user.name }}</h3>
+                        <ul>
+                            <li>Id: {{ user.id }}</li>
+                            <li>Email: {{ user.email }}</li>
+                            <li>Role: {{ user.role }}</li>
+                        </ul>
+                    </div>
+                </div>
+            </li>
         </ul>
     </ng-container>
     <ng-template #noUsers>

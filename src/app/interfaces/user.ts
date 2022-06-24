@@ -5,6 +5,7 @@ export interface User extends Model {
     name: string;
     email: string;
     role: UserRole;
+    photo?: string;
 }
 
 export type UserRole = 'admin' | 'user';
